@@ -1,0 +1,3999 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>宇宙超级无敌科学健身搭子</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #21262d;
+            --bg-hover: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-orange: #f0883e;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --accent-red: #f85149;
+            --border-color: #30363d;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --modal-bg: rgba(0, 0, 0, 0.8);
+            --fixed-bottom-bg: rgba(13, 17, 23, 0.95);
+            --gradient-dark: #d26f2a;
+            --shadow-orange: rgba(240, 136, 62, 0.3);
+            --bg-green-soft: rgba(63, 185, 80, 0.15);
+            --bg-blue-soft: rgba(88, 166, 255, 0.1);
+        }
+
+        [data-theme="ink"] {
+            --bg-primary: #1c1b1a;
+            --bg-secondary: #252422;
+            --bg-card: #2e2d2b;
+            --bg-hover: #383734;
+            --text-primary: #e8e3db;
+            --text-secondary: #9b968c;
+            --accent-orange: #c4734c;
+            --accent-green: #6b9b6e;
+            --accent-blue: #7f98ab;
+            --accent-red: #c4665a;
+            --border-color: #3d3b38;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --modal-bg: rgba(0, 0, 0, 0.8);
+            --fixed-bottom-bg: rgba(28, 27, 26, 0.95);
+            --gradient-dark: #a85d3a;
+            --shadow-orange: rgba(196, 115, 76, 0.3);
+            --bg-green-soft: rgba(107, 155, 110, 0.15);
+            --bg-blue-soft: rgba(127, 152, 171, 0.12);
+        }
+
+        [data-theme="ocean"] {
+            --bg-primary: #f6f4f1;
+            --bg-secondary: #eeebe6;
+            --bg-card: #ffffff;
+            --bg-hover: #f0ede8;
+            --text-primary: #2d2a26;
+            --text-secondary: #8c8780;
+            --accent-orange: #e0916b;
+            --accent-green: #5fa89a;
+            --accent-blue: #5c8db5;
+            --accent-red: #d4786e;
+            --border-color: #e0dbd4;
+            --shadow-color: rgba(0, 0, 0, 0.06);
+            --modal-bg: rgba(0, 0, 0, 0.6);
+            --fixed-bottom-bg: rgba(246, 244, 241, 0.95);
+            --gradient-dark: #c47a55;
+            --shadow-orange: rgba(224, 145, 107, 0.3);
+            --bg-green-soft: rgba(95, 168, 154, 0.15);
+            --bg-blue-soft: rgba(92, 141, 181, 0.1);
+        }
+
+        [data-theme="berry"] {
+            --bg-primary: #fdf6f8;
+            --bg-secondary: #fef0f3;
+            --bg-card: #ffffff;
+            --bg-hover: #ffe8ee;
+            --text-primary: #3d2c33;
+            --text-secondary: #c49da8;
+            --accent-orange: #ff5e82;
+            --accent-green: #4ec4ae;
+            --accent-blue: #8b9cf7;
+            --accent-red: #ff3b6e;
+            --border-color: #f2dce3;
+            --shadow-color: rgba(200, 150, 165, 0.12);
+            --modal-bg: rgba(40, 20, 30, 0.65);
+            --fixed-bottom-bg: rgba(253, 246, 248, 0.95);
+            --gradient-dark: #e04a72;
+            --shadow-orange: rgba(255, 94, 130, 0.28);
+            --bg-green-soft: rgba(78, 196, 174, 0.15);
+            --bg-blue-soft: rgba(139, 156, 247, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .page {
+            display: none;
+            padding: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .header {
+            padding: 24px 0 16px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .btn-profile {
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-profile:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent-blue);
+        }
+
+        .daily-tip {
+            margin-top: 12px;
+            padding: 12px;
+            background: var(--bg-blue-soft);
+            border-radius: 8px;
+            border: 1px solid var(--accent-blue);
+        }
+
+        .tab-bar {
+            display: flex;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 16px;
+        }
+
+        .tab-item {
+            flex: 1;
+            padding: 14px 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab-item.active {
+            background: var(--accent-orange);
+            color: white;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .exercise-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .exercise-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .exercise-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .exercise-group {
+            margin-bottom: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .exercise-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .exercise-group-header:hover {
+            background: var(--bg-hover);
+        }
+
+        .exercise-group-header:active {
+            background: var(--bg-primary);
+        }
+
+        .exercise-group-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .exercise-group-icon {
+            font-size: 16px;
+        }
+
+        .exercise-group-arrow {
+            font-size: 12px;
+            color: var(--text-secondary);
+            transition: transform 0.2s ease;
+        }
+
+        .exercise-group-arrow.rotated {
+            transform: rotate(90deg);
+        }
+
+        .exercise-group-content {
+            display: none;
+            padding: 6px;
+        }
+
+        .exercise-group-content.expanded {
+            display: block;
+        }
+
+        .checkbox-wrapper {
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--accent-orange);
+        }
+
+        .exercise-info {
+            flex: 1;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .exercise-icon {
+            font-size: 18px;
+        }
+
+        .exercise-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .sets-input {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .input-group label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .input-field {
+            width: 60px;
+            padding: 6px 8px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+        .input-field.num-3 {
+            width: 52px;
+            box-sizing: border-box;
+        }
+        .unit-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .custom-input {
+            width: 100%;
+            padding: 10px 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .custom-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        .template-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .template-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .template-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .template-name {
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .template-duration {
+            font-size: 12px;
+            color: var(--accent-green);
+            background: var(--bg-green-soft);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .template-exercises {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .template-desc {
+            font-size: 12px;
+            color: var(--text-primary);
+            line-height: 1.7;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .template-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-template-primary {
+            flex: 1;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--accent-orange), var(--gradient-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 44px;
+        }
+
+        .btn-template-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px var(--shadow-orange);
+        }
+
+        .btn-template-secondary {
+            flex: 1;
+            padding: 12px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 44px;
+        }
+
+        .btn-template-secondary:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent-blue);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-orange), var(--gradient-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-orange);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+        }
+
+        .btn-danger {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: var(--accent-red);
+            opacity: 0.9;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            line-height: 1.4;
+            padding: 10px 4px;
+            text-align: center;
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        .fixed-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: var(--fixed-bottom-bg);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timer-section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .timer-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .timer-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .timer-value {
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'SF Mono', Monaco, monospace;
+            color: var(--accent-orange);
+        }
+
+        .timer-value.large {
+            font-size: 28px;
+        }
+
+        .video-panel {
+            width: 94vw;
+            max-width: 480px;
+            margin: 14px auto;
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-blue);
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .video-frame-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: #000;
+        }
+        .video-panel-header, .video-panel-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            font-size: 13px;
+            color: var(--text-primary);
+            gap: 8px;
+        }
+        .video-panel-btn {
+            background: rgba(88, 166, 255, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .btn-video-play {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: var(--accent-orange);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-video-play.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status-badge {
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .status-workout {
+            background: var(--bg-green-soft);
+            color: var(--accent-green);
+        }
+
+        .status-rest {
+            background: var(--bg-blue-soft);
+            color: var(--accent-blue);
+        }
+
+        .workout-list {
+            margin-bottom: 80px;
+        }
+
+        .workout-item {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .workout-item-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .workout-item-icon {
+            font-size: 20px;
+        }
+
+        .workout-item-name {
+            font-size: 14px;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-orange), var(--accent-green));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .progress-count {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        .btn-complete-set {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-green);
+            border-radius: 8px;
+            color: var(--accent-green);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-complete-set:hover {
+            background: var(--bg-green-soft);
+        }
+
+        .btn-complete-set.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 32px 24px;
+            margin-bottom: 16px;
+        }
+
+        .result-emoji {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .result-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .result-duration {
+            font-size: 18px;
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-item {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .exercise-stats {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 16px;
+        }
+
+        .exercise-stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .exercise-stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .exercise-stat-name {
+            font-size: 14px;
+        }
+
+        .exercise-stat-detail {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .history-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .summary-item {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .summary-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-orange);
+            margin-bottom: 2px;
+        }
+
+        .summary-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .summary-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .summary-tab {
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .summary-tab.active {
+            background: var(--accent-orange);
+            color: white;
+            border-color: var(--accent-orange);
+        }
+
+        .history-list {
+            max-height: calc(100vh - 300px);
+            overflow-y: auto;
+        }
+
+        .history-item {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .history-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .history-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .history-date {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .history-duration {
+            font-size: 14px;
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .history-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .history-expand-icon {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .history-expand-icon.expanded {
+            transform: rotate(180deg);
+        }
+
+        .history-detail {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .history-detail.show {
+            display: block;
+        }
+
+        .history-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 13px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-blue);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--modal-bg);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 16px;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            padding: 20px 24px;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 12px;
+            padding: 16px 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .modal-footer .btn {
+            flex: 1;
+            margin-top: 0;
+        }
+
+        .custom-exercise-item {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .custom-exercise-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .custom-exercise-icon {
+            font-size: 22px;
+            margin-right: 12px;
+        }
+
+        .custom-exercise-name {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .custom-sets-input {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .custom-input-field {
+            width: 50px;
+            padding: 6px 8px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .custom-input-field:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        .btn-delete {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: var(--bg-secondary);
+            color: var(--accent-red);
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .btn-delete:hover {
+            background: var(--accent-red);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        #summary-chart-container {
+            margin-top: 16px;
+            padding: 8px 0;
+        }
+
+        #summary-chart {
+            width: 100% !important;
+            height: 220px !important;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .toggle-switch {
+            display: inline-block;
+            position: relative;
+            width: 48px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-switch label {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--bg-secondary);
+            transition: 0.3s;
+            border-radius: 26px;
+        }
+
+        .toggle-switch label:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--text-secondary);
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        .toggle-switch input:checked + label {
+            background-color: var(--accent-orange);
+        }
+
+        .toggle-switch input:checked + label:before {
+            transform: translateX(22px);
+            background-color: white;
+        }
+
+        .theme-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .theme-btn {
+            flex: 1;
+            min-width: calc(50% - 7px);
+            padding: 12px 8px;
+            background: rgba(240, 136, 62, 0.1);
+            border: 2px solid var(--accent-orange);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .theme-btn.active {
+            border-color: var(--accent-orange);
+            background: rgba(240, 136, 62, 0.1);
+        }
+
+        .theme-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-btn span {
+            font-size: 12px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .theme-tag {
+            font-size: 10px !important;
+            color: var(--text-secondary) !important;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .gender-select {
+            display: flex;
+            gap: 12px;
+        }
+
+        .radio-label {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .radio-label:hover {
+            border-color: var(--accent-orange);
+        }
+
+        .radio-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-orange);
+        }
+
+        .radio-label span {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .bmr-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-green);
+            padding: 12px;
+            background: rgba(63, 185, 80, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .long-press-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .long-press-btn .progress-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: width 0.1s linear;
+            width: 0%;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .long-press-btn .countdown-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .long-press-btn.pressing .countdown-text {
+            opacity: 1;
+        }
+
+        @media (min-width: 600px) {
+            .page {
+                padding: 24px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .exercise-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .exercise-item {
+                margin-bottom: 0;
+            }
+        }
+
+        /* ========================================
+           反馈征集模块
+           ======================================== */
+        .feedback-card {
+            background: var(--bg-card);
+            border: 1px dashed var(--accent-orange);
+            border-radius: 14px;
+            padding: 20px;
+            margin-top: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feedback-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 70px;
+            height: 70px;
+            background: var(--shadow-orange);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .feedback-card::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-blue-soft);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .feedback-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feedback-emoji {
+            font-size: 26px;
+            animation: bounce-feedback 2.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce-feedback {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .feedback-title {
+            font-size: 15px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feedback-subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feedback-input {
+            width: 100%;
+            min-height: 72px;
+            padding: 12px 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 13px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            font-family: inherit;
+        }
+
+        .feedback-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px var(--shadow-orange);
+        }
+
+        .feedback-input::placeholder {
+            color: #5a6270;
+            font-size: 12px;
+        }
+
+        .feedback-contact {
+            display: flex;
+            gap: 16px;
+            margin: 10px 0;
+            position: relative;
+            z-index: 1;
+            font-size: 12px;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .feedback-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: all;
+        }
+
+        .feedback-contact-item:hover {
+            border-color: var(--accent-blue);
+            background: var(--bg-hover);
+        }
+
+        .feedback-qr {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border: 1px dashed var(--border-color);
+            color: var(--text-secondary);
+            font-size: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feedback-counter {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-align: right;
+            margin-top: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feedback-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-feedback {
+            flex: 1;
+            padding: 8px 6px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            min-height: 38px;
+        }
+
+        .btn-feedback-primary {
+            background: linear-gradient(135deg, var(--accent-orange), var(--gradient-dark));
+            color: white;
+        }
+
+        .btn-feedback-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px var(--shadow-orange);
+        }
+
+        .btn-feedback-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-feedback-secondary:hover {
+            border-color: var(--accent-blue);
+            color: var(--text-primary);
+        }
+
+        .btn-feedback-email {
+            background: rgba(88, 166, 255, 0.12);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+        }
+
+        .btn-feedback-email:hover {
+            background: rgba(88, 166, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .feedback-toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: var(--bg-card);
+            border: 1px solid var(--accent-green);
+            border-radius: 14px;
+            padding: 24px 32px;
+            text-align: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            box-shadow: 0 12px 40px var(--shadow-color);
+        }
+
+        .feedback-toast.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .feedback-toast-emoji {
+            font-size: 44px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .feedback-toast-text {
+            font-size: 15px;
+            color: var(--text-primary);
+            font-weight: 600;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 首页 -->
+    <div id="page-home" class="page active">
+        <div class="header">
+            <div class="header-content">
+                <div>
+                    <h1>🏋️ 宇宙超级无敌科学健身搭子</h1>
+                    <p>居家/出差健身好帮手</p>
+                </div>
+                <button class="btn-profile" onclick="openProfileModal()">👤</button>
+            </div>
+            <div id="daily-tip" class="daily-tip">
+                <div id="weekday-display" style="font-size: 14px; color: var(--text-secondary);"></div>
+                <div id="recommend-display" style="font-size: 13px; color: var(--accent-blue); margin-top: 4px;"></div>
+                <div id="daily-challenge" style="margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-color);"></div>
+            </div>
+        </div>
+
+        <div class="tab-bar">
+            <div class="tab-item active" onclick="switchTab('custom')">快速开始 · 自选项目</div>
+            <div class="tab-item" onclick="switchTab('template')">方案模版 · 一键开始</div>
+        </div>
+
+        <!-- 自定义选择 -->
+        <div id="tab-custom">
+            <div class="card">
+                <div class="card-title">选择运动项目</div>
+                <div id="exercise-list">
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="startWorkout()">▶️ 开始运动</button>
+        </div>
+
+        <!-- 方案模板 -->
+        <div id="tab-template" style="display: none;">
+            <div class="template-card">
+                <div class="template-header">
+                    <div class="template-name">🏋️ A 方案·居家全套</div>
+                    <div class="template-duration">30分钟</div>
+                </div>
+                <div class="template-exercises">
+                    壶铃摇摆 4×20 | 健腹轮跪姿 3×12 | 俯卧撑 3×15 | 壶铃高脚杯深蹲 3×15 | 单杠悬挂 3×60s | 弓步蹲（持壶铃）3×10
+                </div>
+                <div class="template-actions">
+                    <button class="btn-template-primary" onclick="selectTemplate('A')">▶️ 一键开始</button>
+                    <button class="btn-template-secondary" onclick="previewTemplate('A')">✏️ 预览调整</button>
+                </div>
+            </div>
+            <div class="template-card">
+                <div class="template-header">
+                    <div class="template-name">🧳 B 方案·酒店哑铃</div>
+                    <div class="template-duration">20分钟</div>
+                </div>
+                <div class="template-exercises">
+                    哑铃深蹲 3×15 | 哑铃划船 3×12 | 哑铃推举 3×10 | 俯卧撑 3×15 | 坡度快走 10min
+                </div>
+                <div class="template-actions">
+                    <button class="btn-template-primary" onclick="selectTemplate('B')">▶️ 一键开始</button>
+                    <button class="btn-template-secondary" onclick="previewTemplate('B')">✏️ 预览调整</button>
+                </div>
+            </div>
+            <div class="template-card">
+                <div class="template-header">
+                    <div class="template-name">🏨 C 方案·零器械</div>
+                    <div class="template-duration">15分钟</div>
+                </div>
+                <div class="template-exercises">
+                    徒手深蹲 3×20 | 俯卧撑 3×15 | 平板支撑 3×40s | 弓步蹲（持壶铃）3×12 | 臀桥 3×20
+                </div>
+                <div class="template-actions">
+                    <button class="btn-template-primary" onclick="selectTemplate('C')">▶️ 一键开始</button>
+                    <button class="btn-template-secondary" onclick="previewTemplate('C')">✏️ 预览调整</button>
+                </div>
+            </div>
+            <div class="template-card">
+                <div class="template-header">
+                    <div class="template-name">🏸 D 方案·羽毛球精进</div>
+                    <div class="template-duration">25分钟</div>
+                </div>
+                <div class="template-exercises">
+                    热身：跳绳 3min | 主训×2轮：弓步蹲 3×10 → 壶铃摇摆 3×15 → 壶铃划船 3×12 → 壶铃推举 3×10 → 平板支撑 3×40s → 波比跳 3×10 | 整理：单杠悬挂 3×30s
+                </div>
+                <div class="template-desc">
+                    <strong>🎯 羽毛球五项能力全覆盖：</strong>本方案从现有训练中提取羽毛球最需要的动作，按「热身 → 主训2轮 → 整理」编排，约25分钟科学覆盖一场球所需的力量、敏捷与耐力：<br>
+                    启动 / 移动步法 → 弓步蹲、跳绳<br>
+                    挥拍力量（动力链） → 壶铃摇摆、壶铃划船、壶铃推举<br>
+                    核心稳定 → 平板支撑<br>
+                    心肺 / 爆发救球 → 波比跳、跳绳<br>
+                    损伤预防 → 单杠悬挂
+                </div>
+                <div class="template-actions">
+                    <button class="btn-template-primary" onclick="selectTemplate('D')">▶️ 一键开始</button>
+                    <button class="btn-template-secondary" onclick="previewTemplate('D')">✏️ 预览调整</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-secondary" onclick="showPage('history')" style="margin-top: 16px;">📊 查看历史记录</button>
+    </div>
+
+    <!-- 运动页 -->
+    <div id="page-workout" class="page">
+        <div class="timer-section">
+            <div class="timer-row">
+                <div class="timer-label">总计时</div>
+                <div class="timer-value large" id="total-timer">00:00:00</div>
+            </div>
+            <div class="timer-row">
+                <div class="timer-label">当前组计时</div>
+                <div class="timer-value" id="current-timer">00:00</div>
+            </div>
+            <div class="timer-row" id="rest-timer-row" style="display: none;">
+                <div class="timer-label">已休息</div>
+                <div class="timer-value" id="rest-timer">00:00</div>
+            </div>
+            <div class="timer-row">
+                <div class="timer-label">状态</div>
+                <div class="status-badge status-workout" id="status-badge">🏃 运动中</div>
+            </div>
+        </div>
+
+        <div id="video-panel" class="video-panel" style="display: none;">
+            <div class="video-panel-header">
+                <span id="video-panel-title">🏸 视频跟练</span>
+                <button class="video-panel-btn" onclick="closeVideoPanel()">✕ 收起</button>
+            </div>
+            <div class="video-frame-wrap">
+                <video id="video-player" class="video-player" controls playsinline webkit-playsinline>
+                    <source src="" type="video/mp4">
+                    您的浏览器不支持视频播放
+                </video>
+            </div>
+            <div class="video-panel-footer">
+                <span id="video-set-info">第 1/1 组</span>
+                <button class="video-panel-btn" onclick="toggleVideoFullscreen()">⛶ 全屏</button>
+            </div>
+        </div>
+
+        <div class="workout-list" id="workout-list">
+        </div>
+
+        <div class="fixed-bottom">
+            <div class="btn-group">
+                <button class="btn btn-secondary" id="btn-add-exercise" onclick="showAddExerciseModal()">添加项目</button>
+                <button class="btn btn-secondary" id="btn-pause" onclick="togglePause()">休息暂停</button>
+                <button class="btn btn-danger long-press-btn" id="btn-end" data-action="end">长按结束</button>
+                <button class="btn btn-secondary long-press-btn" id="btn-restart" data-action="restart">长按返回</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加项目弹窗 -->
+    <div id="add-exercise-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">添加运动项目</div>
+                <button class="modal-close" onclick="closeAddExerciseModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>选择项目</label>
+                    <select id="add-exercise-select" class="form-control" onchange="updateAddExerciseDefaults()">
+                        <option value="">请选择项目</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>组数</label>
+                    <input type="number" id="add-exercise-sets" class="form-control" min="1" value="3">
+                </div>
+                <div class="form-group">
+                    <label>单组数量</label>
+                    <input type="number" id="add-exercise-reps" class="form-control" min="1" value="15">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeAddExerciseModal()">取消</button>
+                <button class="btn btn-primary" onclick="addExerciseToWorkout()">确认添加</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 结果页 -->
+    <div id="page-result" class="page">
+        <div class="card result-card">
+            <div class="result-emoji">🎉</div>
+            <div class="result-title">运动完成！</div>
+            <div class="result-duration" id="result-duration">总用时：00:00:00</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value" id="stat-exercises">0</div>
+                <div class="stat-label">完成项目</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="stat-sets">0</div>
+                <div class="stat-label">完成组数</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="stat-calories">0</div>
+                <div class="stat-label">消耗估算(kcal)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="stat-rest">0</div>
+                <div class="stat-label">休息时长</div>
+            </div>
+            <div class="stat-item intensity-item" id="stat-intensity">
+                <div class="stat-value" id="stat-intensity-value">🦥</div>
+                <div class="stat-label" id="stat-intensity-label">运动强度</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">完成明细</div>
+            <div class="exercise-stats" id="exercise-stats">
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="saveRecord()">📋 保存记录</button>
+            <button class="btn btn-secondary" onclick="showPage('home')">🔄 再来一组</button>
+        </div>
+    </div>
+
+    <!-- 历史记录页 -->
+    <div id="page-history" class="page">
+        <div class="back-link" onclick="showPage('home')">← 返回首页</div>
+        
+        <div class="card">
+            <div class="card-title">统计汇总</div>
+            <div class="summary-tabs">
+                <div class="summary-tab active" onclick="updateSummary('all')">总览</div>
+                <div class="summary-tab" onclick="updateSummary('week')">本周</div>
+                <div class="summary-tab" onclick="updateSummary('month')">本月</div>
+                <div class="summary-tab" onclick="updateSummary('year')">本年</div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <button class="btn" style="flex: 1; padding: 8px; font-size: 13px;" onclick="exportCSV()">📥 导出CSV</button>
+                <button class="btn" style="flex: 1; padding: 8px; font-size: 13px; background: rgba(248, 81, 73, 0.15); border-color: var(--accent-red); color: var(--accent-red);" onclick="clearHistory()">🗑️ 清空历史</button>
+            </div>
+            <div class="history-summary">
+                <div class="summary-item">
+                    <div class="summary-value" id="summary-count">0</div>
+                    <div class="summary-label">运动次数</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value" id="summary-duration">0</div>
+                    <div class="summary-label">累计时长</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-value" id="summary-calories">0</div>
+                    <div class="summary-label">累计消耗</div>
+                </div>
+            </div>
+            <div id="summary-chart-container">
+                <canvas id="summary-chart"></canvas>
+            </div>
+            <div id="exercise-sets-summary" style="display: none;">
+            </div>
+        </div>
+
+        <div class="card" id="weekly-report-card" style="display: none;">
+            <div class="card-title">📊 本周运动报告</div>
+            <div id="weekly-report-content" style="font-size: 13px; line-height: 1.6; white-space: pre-wrap;"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">历史记录</div>
+            <div class="history-list" id="history-list">
+            </div>
+        </div>
+
+        <div class="card" id="pr-card" style="display: none;">
+            <div class="card-title">🏆 个人记录</div>
+            <div id="pr-content">
+            </div>
+        </div>
+
+        <!-- 🫵 吐槽能量收集区 -->
+        <div class="feedback-card">
+            <div class="feedback-header">
+                <span class="feedback-emoji">🫵</span>
+                <span class="feedback-title">来都来了，喷两句再走</span>
+            </div>
+            <div class="feedback-subtitle">
+                这个 APP 是我用 TRAE 一行一行敲出来的（AI 帮忙也算我写的 💪）。<br>
+                你练得爽不爽？计时器卡不卡？有啥想吐槽的？<br>
+                <span style="color: var(--accent-orange);">——反正我也未必改得了，但万一呢 🤷</span>
+            </div>
+            <textarea 
+                class="feedback-input" 
+                id="feedback-input"
+                placeholder="比如：
+「引体向上计时器能不能自动判断我偷懒了」
+「出差模版为什么没有酒店冰箱偷吃选项」
+「建议加入·今天太累了放过自己·按钮」
+「什么时候支持自动PUA我健身」
+……别客气，精准开喷 👇"
+                maxlength="500"
+                oninput="updateFeedbackCounter()"
+            ></textarea>
+            <div class="feedback-counter">
+                <span id="feedback-char-count">0</span>/500
+            </div>
+
+            <div class="feedback-contact">
+                <span style="display: flex; align-items: center; gap: 4px;">📬 也可以直接联系我：</span>
+                <span class="feedback-contact-item" onclick="copyToClipboard('liuchch@foxmail.com', '📧 邮箱已复制到剪贴板！')">
+                    ✉️ liuchch@foxmail.com
+                </span>
+                <span class="feedback-contact-item" onclick="copyToClipboard('18916528531', '📱 微信号已复制到剪贴板！')">
+                    💬 微信：18916528531
+                </span>
+            </div>
+
+            <div class="feedback-contact" style="margin-top: 10px;">
+                <span style="display: flex; align-items: center; gap: 4px;">📊 想写更多？</span>
+                <span class="feedback-contact-item" onclick="window.open('https://docs.qq.com/form/page/DRGdRQVhvVmpCZGp3', '_blank')" style="border-color: var(--accent-green);">
+                    🔗 打开「练练不忘」收集表
+                </span>
+            </div>
+
+            <div class="feedback-actions">
+                <button class="btn-feedback btn-feedback-secondary" onclick="clearFeedback()">
+                    🗑️ 不说了，继续练
+                </button>
+                <button class="btn-feedback btn-feedback-email" onclick="sendFeedbackEmail()">
+                    ✉️ 邮件反馈
+                </button>
+                <button class="btn-feedback btn-feedback-primary" onclick="submitFeedback()">
+                    📢 发射反馈
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 自定义方案弹窗 -->
+    <div id="custom-modal" class="modal-overlay" style="display: none;" onclick="if(event.target === this) closeCustomModal()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">✏️ 自定义方案</h3>
+                <button class="modal-close" onclick="closeCustomModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="custom-exercise-list">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeCustomModal()">取消</button>
+                <button class="btn btn-primary" onclick="startCustomWorkout()">▶️ 开始运动</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 用户资料设置弹窗 -->
+    <div id="profile-modal" class="modal-overlay" style="display: none;" onclick="if(event.target === this) closeProfileModal()">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="profile-modal-title">👤 个人资料设置</h3>
+                <button class="modal-close" onclick="closeProfileModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">性别</label>
+                    <div class="gender-select">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male" checked onchange="updateBMRDisplay()">
+                            <span>👨 男</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female" onchange="updateBMRDisplay()">
+                            <span>👩 女</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">年龄</label>
+                    <input type="number" id="profile-age" class="form-input" placeholder="请输入年龄" min="1" max="120" oninput="updateBMRDisplay()">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">身高 (cm)</label>
+                    <input type="number" id="profile-height" class="form-input" placeholder="请输入身高" min="50" max="250" oninput="updateBMRDisplay()">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">体重 (kg)</label>
+                    <input type="number" id="profile-weight" class="form-input" placeholder="请输入体重" min="20" max="200" oninput="updateBMRDisplay()">
+                </div>
+                
+                <div class="form-group" id="bmr-display" style="display: none;">
+                    <label class="form-label">基础代谢率 (BMR)</label>
+                    <div class="bmr-value" id="bmr-value">0 kcal/天</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">音效提示</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="profile-sound" onchange="toggleSound()">
+                        <label for="profile-sound"></label>
+                    </div>
+                    <span style="font-size: 12px; color: var(--text-secondary); margin-left: 8px;">休息计时、完成一组等提示音</span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">配色方案</label>
+                    <div class="theme-selector">
+                        <button class="theme-btn active" data-theme="geek" onclick="setTheme('geek')">
+                            <div class="theme-dot" style="background: linear-gradient(135deg, #0d1117, #21262d);"></div>
+                            <span>极客暗夜</span>
+                            <span class="theme-tag">GEEK</span>
+                        </button>
+                        <button class="theme-btn" data-theme="berry" onclick="setTheme('berry')">
+                            <div class="theme-dot" style="background: linear-gradient(135deg, #fdf6f8, #ff5e82);"></div>
+                            <span>甜心莓莓</span>
+                            <span class="theme-tag">BERRY</span>
+                        </button>
+                        <button class="theme-btn" data-theme="ink" onclick="setTheme('ink')">
+                            <div class="theme-dot" style="background: linear-gradient(135deg, #1c1b1a, #2e2d2b);"></div>
+                            <span>松烟入墨</span>
+                            <span class="theme-tag">INK</span>
+                        </button>
+                        <button class="theme-btn" data-theme="ocean" onclick="setTheme('ocean')">
+                            <div class="theme-dot" style="background: linear-gradient(135deg, #f6f4f1, #ffffff);"></div>
+                            <span>海盐芝士</span>
+                            <span class="theme-tag">OCEAN</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeProfileModal()">取消</button>
+                <button class="btn btn-primary" onclick="saveProfile()">✅ 保存设置</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const exercises = [
+            { id: 1, name: '壶铃摇摆', icon: '🏋️', defaultSets: 3, defaultReps: 15, unit: 'reps', group: 'kettlebell' },
+            { id: 2, name: '壶铃深蹲', icon: '🏋️', defaultSets: 3, defaultReps: 15, unit: 'reps', group: 'kettlebell' },
+            { id: 3, name: '弓步蹲', icon: '🦵', defaultSets: 3, defaultReps: 10, unit: 'reps', group: 'kettlebell' },
+            { id: 4, name: '壶铃划船', icon: '⛵', defaultSets: 3, defaultReps: 12, unit: 'reps', group: 'kettlebell' },
+            { id: 5, name: '壶铃推举', icon: '🏋️', defaultSets: 3, defaultReps: 10, unit: 'reps', group: 'kettlebell' },
+            { id: 6, name: '健腹轮跪姿', icon: '🛞', defaultSets: 3, defaultReps: 12, unit: 'reps', group: 'hotel' },
+            { id: 7, name: '单杠悬挂', icon: '🧗', defaultSets: 3, defaultReps: 30, unit: 'seconds', group: 'hotel' },
+            { id: 8, name: '跑步机跑步', icon: '🏃', defaultSets: 1, defaultReps: 10, unit: 'minutes', group: 'hotel' },
+            { id: 9, name: '椭圆机漫步', icon: '🎢', defaultSets: 1, defaultReps: 10, unit: 'minutes', group: 'hotel' },
+            { id: 10, name: '划船机', icon: '🚣', defaultSets: 1, defaultReps: 10, unit: 'minutes', group: 'hotel' },
+            { id: 11, name: '动感单车', icon: '🚴', defaultSets: 1, defaultReps: 10, unit: 'minutes', group: 'hotel' },
+            { id: 12, name: '俯卧撑', icon: '🤸', defaultSets: 3, defaultReps: 15, unit: 'reps', group: 'bodyweight' },
+            { id: 13, name: '徒手深蹲', icon: '🏃', defaultSets: 3, defaultReps: 20, unit: 'reps', group: 'bodyweight' },
+            { id: 14, name: '平板支撑', icon: '🧘', defaultSets: 3, defaultReps: 40, unit: 'seconds', group: 'bodyweight' },
+            { id: 15, name: '臀桥', icon: '🍑', defaultSets: 3, defaultReps: 20, unit: 'reps', group: 'bodyweight' },
+            { id: 16, name: '波比跳', icon: '💥', defaultSets: 3, defaultReps: 10, unit: 'reps', group: 'bodyweight' },
+            { id: 17, name: '跳绳', icon: '🪢', defaultSets: 3, defaultReps: 200, unit: 'reps', group: 'bodyweight' },
+            { id: 18, name: '仰卧起坐', icon: '🤸', defaultSets: 3, defaultReps: 30, unit: 'reps', group: 'bodyweight' },
+            { id: 19, name: '坡度快走', icon: '🚶', defaultSets: 1, defaultReps: 10, unit: 'minutes', group: 'hotel' },
+            { id: 20, name: '自定义', icon: '✏️', isCustom: true, group: 'custom' },
+            { id: 21, name: '原地专项步伐练习', icon: '🏸', defaultSets: 1, defaultReps: 17, unit: 'minutes', group: 'badminton', type: 'video', videoUrl: '原地专项步伐练习.mp4' },
+            { id: 22, name: '移动专项步伐练习', icon: '🏸', defaultSets: 1, defaultReps: 15, unit: 'minutes', group: 'badminton', type: 'video', videoUrl: '移动专项步法练习.mp4' },
+            { id: 23, name: '核心练习', icon: '🏸', defaultSets: 1, defaultReps: 30, unit: 'minutes', group: 'badminton', type: 'video', videoUrl: '核心跟练.mp4' },
+            { id: 24, name: '羽毛球腿部力量训练', icon: '🏸', defaultSets: 1, defaultReps: 19, unit: 'minutes', group: 'badminton', type: 'video', videoUrl: '羽毛球腿部力量训练.mp4' },
+            { id: 25, name: '羽毛球上肢力量训练', icon: '🏸', defaultSets: 1, defaultReps: 30, unit: 'minutes', group: 'badminton', type: 'video', videoUrl: '羽毛球上肢力量训练.mp4' }
+        ];
+
+        const exerciseGroups = [
+            { id: 'kettlebell', name: '1. 壶铃哑铃', icon: '🏋️' },
+            { id: 'hotel', name: '2. 酒店器械', icon: '🏨' },
+            { id: 'bodyweight', name: '3. 零器械', icon: '💪' },
+            { id: 'badminton', name: '4. 羽毛球跟练', icon: '🏸' }
+        ];
+
+        let userProfile = {
+            gender: 'male',
+            age: 38,
+            weight: 70,
+            height: 170,
+            soundEnabled: true
+        };
+        let audioContext = null;
+
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }
+
+        function playSound(type) {
+            if (!userProfile.soundEnabled) return;
+            
+            initAudio();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            switch (type) {
+                case 'complete':
+                    oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime);
+                    oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1);
+                    oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2);
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.4);
+                    break;
+                case 'rest':
+                    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.3);
+                    break;
+                case 'restEnd':
+                    oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime + 0.1);
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.3);
+                    break;
+                case 'tick':
+                    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                    oscillator.start();
+                    oscillator.stop(audioContext.currentTime + 0.1);
+                    break;
+            }
+        }
+
+        function toggleSound() {
+            userProfile.soundEnabled = document.getElementById('profile-sound').checked;
+            try {
+                localStorage.setItem('userProfile', JSON.stringify(userProfile));
+            } catch (e) {
+                console.warn('保存音效设置失败:', e);
+            }
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme === 'geek' ? '' : theme);
+            userProfile.theme = theme;
+            try {
+                localStorage.setItem('userProfile', JSON.stringify(userProfile));
+            } catch (e) {
+                console.warn('保存主题设置失败:', e);
+            }
+            
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.theme-btn[data-theme="${theme}"]`).classList.add('active');
+        }
+
+        const METvalues = {
+            '壶铃摇摆': 8.0,
+            '壶铃深蹲': 5.5,
+            '弓步蹲': 6.5,
+            '壶铃划船': 6.0,
+            '壶铃推举': 5.5,
+            '健腹轮跪姿': 4.5,
+            '单杠悬挂': 3.0,
+            '跑步机跑步': 8.0,
+            '椭圆机漫步': 6.0,
+            '划船机': 7.0,
+            '动感单车': 8.0,
+            '俯卧撑': 5.0,
+            '徒手深蹲': 4.0,
+            '平板支撑': 3.5,
+            '臀桥': 3.0,
+            '波比跳': 8.0,
+            '跳绳': 10.0,
+            '仰卧起坐': 4.0,
+            '坡度快走': 3.5,
+            '自定义': 5.0
+        };
+
+        function calculateBMR(gender, weight, height, age) {
+            if (gender === 'male') {
+                return Math.round(10 * weight + 6.25 * height - 5 * age + 5);
+            } else {
+                return Math.round(10 * weight + 6.25 * height - 5 * age - 161);
+            }
+        }
+
+        function calculateCalories(exerciseName, sets, reps, unit, type) {
+            if (type === 'video') {
+                const VIDEO_KCAL_PER_MIN = 9.8; // 心率120/分钟平均水平（≈METs 8，70kg估算）
+                return Math.round(sets * reps * VIDEO_KCAL_PER_MIN);
+            }
+            const MET = METvalues[exerciseName] || METvalues['自定义'];
+            const BMR = calculateBMR(userProfile.gender, userProfile.weight, userProfile.height, userProfile.age);
+            const hourlyBurn = (BMR / 24) * MET;
+            
+            if (unit === 'seconds') {
+                const totalSeconds = sets * reps;
+                return Math.round(hourlyBurn * totalSeconds / 3600);
+            } else if (unit === 'minutes') {
+                const totalMinutes = sets * reps;
+                return Math.round(hourlyBurn * totalMinutes / 60);
+            } else {
+                const avgTimePerRep = 2;
+                const totalSeconds = sets * reps * avgTimePerRep;
+                return Math.round(hourlyBurn * totalSeconds / 3600);
+            }
+        }
+
+        const templates = {
+            A: [
+                { name: '壶铃摇摆', icon: '🏋️', sets: 4, reps: 20, unit: 'reps' },
+                { name: '健腹轮跪姿', icon: '🛞', sets: 3, reps: 12, unit: 'reps' },
+                { name: '俯卧撑', icon: '🤸', sets: 3, reps: 15, unit: 'reps' },
+                { name: '壶铃深蹲', icon: '🏋️', sets: 3, reps: 15, unit: 'reps' },
+                { name: '单杠悬挂', icon: '🧗', sets: 3, reps: 60, unit: 'seconds' },
+                { name: '弓步蹲', icon: '🦵', sets: 3, reps: 10, unit: 'reps' }
+            ],
+            B: [
+                { name: '壶铃深蹲', icon: '🏋️', sets: 3, reps: 15, unit: 'reps' },
+                { name: '壶铃划船', icon: '⛵', sets: 3, reps: 12, unit: 'reps' },
+                { name: '壶铃推举', icon: '🏋️', sets: 3, reps: 10, unit: 'reps' },
+                { name: '俯卧撑', icon: '🤸', sets: 3, reps: 15, unit: 'reps' },
+                { name: '坡度快走', icon: '🚶', sets: 1, reps: 10, unit: 'minutes' }
+            ],
+            C: [
+                { name: '徒手深蹲', icon: '🏃', sets: 3, reps: 20, unit: 'reps' },
+                { name: '俯卧撑', icon: '🤸', sets: 3, reps: 15, unit: 'reps' },
+                { name: '平板支撑', icon: '🧘', sets: 3, reps: 40, unit: 'seconds' },
+                { name: '弓步蹲', icon: '🦵', sets: 3, reps: 12, unit: 'reps' },
+                { name: '臀桥', icon: '🍑', sets: 3, reps: 20, unit: 'reps' },
+            ],
+            D: [
+                { name: '跳绳', icon: '🪢', sets: 1, reps: 3, unit: 'minutes' },
+                { name: '弓步蹲', icon: '🦵', sets: 3, reps: 10, unit: 'reps' },
+                { name: '壶铃摇摆', icon: '🏋️', sets: 3, reps: 15, unit: 'reps' },
+                { name: '壶铃划船', icon: '⛵', sets: 3, reps: 12, unit: 'reps' },
+                { name: '壶铃推举', icon: '🏋️', sets: 3, reps: 10, unit: 'reps' },
+                { name: '平板支撑', icon: '🧘', sets: 3, reps: 40, unit: 'seconds' },
+                { name: '波比跳', icon: '💥', sets: 3, reps: 10, unit: 'reps' },
+                { name: '弓步蹲', icon: '🦵', sets: 3, reps: 10, unit: 'reps' },
+                { name: '壶铃摇摆', icon: '🏋️', sets: 3, reps: 15, unit: 'reps' },
+                { name: '壶铃划船', icon: '⛵', sets: 3, reps: 12, unit: 'reps' },
+                { name: '壶铃推举', icon: '🏋️', sets: 3, reps: 10, unit: 'reps' },
+                { name: '平板支撑', icon: '🧘', sets: 3, reps: 40, unit: 'seconds' },
+                { name: '波比跳', icon: '💥', sets: 3, reps: 10, unit: 'reps' },
+                { name: '单杠悬挂', icon: '🧗', sets: 3, reps: 30, unit: 'seconds' }
+            ]
+        };
+
+        let selectedExercises = [];
+        let workoutState = {
+            exercises: [],
+            isPaused: false,
+            totalStartTime: null,
+            totalElapsed: 0,
+            currentStartTime: null,
+            currentElapsed: 0,
+            restStartTime: null,
+            restElapsed: 0,
+            accumulatedRest: 0,
+            timerInterval: null,
+            restCountdownInterval: null,
+            lastExerciseIndex: null
+        };
+        let currentSummaryPeriod = 'week';
+        const APP_VERSION = '1.2.1';
+
+        function getIntensityLabel(calories) {
+            if (calories < 50) return { emoji: '🦥', label: '树懒级 · 约等于翻了个身', color: 'var(--text-secondary)' };
+            if (calories < 100) return { emoji: '🐢', label: '乌龟级 · 好歹动了', color: 'var(--accent-green)' };
+            if (calories < 150) return { emoji: '🐎', label: '马马马虎虎级', color: 'var(--accent-blue)' };
+            if (calories < 250) return { emoji: '🔥', label: '燃起来了级', color: 'var(--accent-orange)' };
+            return { emoji: '🚀', label: '火箭级 · 脂肪连夜写辞职信', color: 'var(--accent-red)' };
+        }
+
+        function init() {
+            loadProfile();
+            renderExerciseList();
+            updateSummary('week');
+            updateDailyTip();
+            
+            const profileSaved = localStorage.getItem('userProfile');
+            if (!profileSaved) {
+                document.getElementById('profile-modal-title').textContent = '👋 欢迎！请完善个人资料';
+                openProfileModal();
+            }
+        }
+
+        function updateDailyTip() {
+            const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+            const now = new Date();
+            const dayIndex = now.getDay();
+            const weekday = days[dayIndex];
+            
+            document.getElementById('weekday-display').textContent = `📅 今天是 ${weekday}`;
+            
+            let recommend = '';
+            if (dayIndex === 6) {
+                recommend = '🌟 推荐方案：A 方案·居家全套';
+            } else if (dayIndex >= 2 && dayIndex <= 4) {
+                recommend = '🧳 出差建议：B 方案·酒店哑铃 或 C 方案·零器械';
+            } else {
+                recommend = '💪 自由选择适合今天的训练方案';
+            }
+            
+            document.getElementById('recommend-display').textContent = recommend;
+            
+            renderDailyChallenge();
+        }
+
+        function renderDailyChallenge() {
+            const challenges = [
+                { text: '靠墙静蹲 60 秒', icon: '🧱' },
+                { text: '平板支撑到发抖为止', icon: '🫨' },
+                { text: '做 10 个俯卧撑', icon: '💪' },
+                { text: '单腿站立刷牙（左右各30秒）', icon: '🦩' },
+                { text: '深蹲 20 个（趁等水开的时候）', icon: '🫖' },
+                { text: '踮脚尖 50 下（假装够高处的东西）', icon: '📦' },
+                { text: '背部夹笔 30 秒（改善圆肩）', icon: '✏️' },
+                { text: '今天走楼梯，不坐电梯', icon: '🪜' },
+            ];
+            
+            const today = new Date().toDateString();
+            let savedChallenge = null;
+            let isCompleted = false;
+            
+            try {
+                const stored = localStorage.getItem('dailyChallenge');
+                if (stored) {
+                    const data = JSON.parse(stored);
+                    if (data.date === today) {
+                        savedChallenge = data.challenge;
+                        isCompleted = data.completed;
+                    }
+                }
+            } catch (e) {
+                console.warn('Failed to read daily challenge:', e);
+            }
+            
+            if (!savedChallenge) {
+                savedChallenge = challenges[Math.floor(Math.random() * challenges.length)];
+                try {
+                    localStorage.setItem('dailyChallenge', JSON.stringify({
+                        date: today,
+                        challenge: savedChallenge,
+                        completed: false
+                    }));
+                } catch (e) {
+                    console.warn('Failed to save daily challenge:', e);
+                }
+            }
+            
+            const challengeContainer = document.getElementById('daily-challenge');
+            if (isCompleted) {
+                challengeContainer.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 18px;">🎉</span>
+                            <span style="font-size: 13px; color: var(--accent-green); font-weight: 600;">今日挑战已完成！</span>
+                        </div>
+                        <span style="font-size: 12px; color: var(--text-secondary);">${savedChallenge.icon} ${savedChallenge.text}</span>
+                    </div>
+                `;
+            } else {
+                challengeContainer.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 18px;">🎯</span>
+                            <div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">今日挑战</div>
+                                <div style="font-size: 12px; color: var(--text-secondary);">${savedChallenge.icon} ${savedChallenge.text}</div>
+                            </div>
+                        </div>
+                        <button onclick="completeChallenge()" style="padding: 6px 12px; border-radius: 20px; background: var(--accent-green); color: white; border: none; font-size: 12px; font-weight: 600; cursor: pointer;">✅ 完成</button>
+                    </div>
+                `;
+            }
+        }
+
+        function completeChallenge() {
+            const today = new Date().toDateString();
+            try {
+                const stored = localStorage.getItem('dailyChallenge');
+                if (stored) {
+                    const data = JSON.parse(stored);
+                    if (data.date === today) {
+                        data.completed = true;
+                        localStorage.setItem('dailyChallenge', JSON.stringify(data));
+                    }
+                }
+            } catch (e) {
+                console.warn('Failed to update daily challenge:', e);
+            }
+            
+            const btn = document.querySelector('#daily-challenge button');
+            if (btn) {
+                btn.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 150);
+            }
+            
+            setTimeout(() => {
+                renderDailyChallenge();
+            }, 300);
+        }
+
+        function loadProfile() {
+            try {
+                const saved = localStorage.getItem('userProfile');
+                if (saved) {
+                    const savedProfile = JSON.parse(saved);
+                    userProfile = { ...userProfile, ...savedProfile };
+                    if (userProfile.soundEnabled === undefined) {
+                        userProfile.soundEnabled = true;
+                    }
+                    if (userProfile.theme === undefined) {
+                        userProfile.theme = 'geek';
+                    }
+                }
+            } catch (e) {
+                console.warn('读取用户资料失败，使用默认设置:', e);
+            }
+
+            if (userProfile.theme) {
+                document.documentElement.setAttribute('data-theme', userProfile.theme === 'geek' ? '' : userProfile.theme);
+            }
+        }
+
+        function openProfileModal() {
+            document.querySelector('input[name="gender"][value="' + userProfile.gender + '"]').checked = true;
+            document.getElementById('profile-age').value = userProfile.age;
+            document.getElementById('profile-height').value = userProfile.height;
+            document.getElementById('profile-weight').value = userProfile.weight;
+            document.getElementById('profile-sound').checked = userProfile.soundEnabled;
+            
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const themeBtn = document.querySelector(`.theme-btn[data-theme="${userProfile.theme || 'geek'}"]`);
+            if (themeBtn) {
+                themeBtn.classList.add('active');
+            }
+            
+            updateBMRDisplay();
+            document.getElementById('profile-modal').style.display = 'flex';
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profile-modal').style.display = 'none';
+        }
+
+        function showAddExerciseModal() {
+            const select = document.getElementById('add-exercise-select');
+            select.innerHTML = '<option value="">请选择项目</option>';
+            
+            exercises.forEach(ex => {
+                if (!ex.isCustom && ex.type !== 'video') {
+                    const option = document.createElement('option');
+                    option.value = ex.id;
+                    option.textContent = `${ex.icon} ${ex.name}`;
+                    select.appendChild(option);
+                }
+            });
+            
+            document.getElementById('add-exercise-modal').style.display = 'flex';
+        }
+
+        function closeAddExerciseModal() {
+            document.getElementById('add-exercise-modal').style.display = 'none';
+        }
+
+        function updateAddExerciseDefaults() {
+            const select = document.getElementById('add-exercise-select');
+            const exId = parseInt(select.value);
+            const ex = exercises.find(e => e.id === exId);
+            
+            if (ex) {
+                document.getElementById('add-exercise-sets').value = ex.defaultSets;
+                document.getElementById('add-exercise-reps').value = ex.defaultReps;
+            }
+        }
+
+        function addExerciseToWorkout() {
+            const select = document.getElementById('add-exercise-select');
+            const exId = parseInt(select.value);
+            const sets = parseInt(document.getElementById('add-exercise-sets').value) || 3;
+            const reps = parseInt(document.getElementById('add-exercise-reps').value) || 15;
+            
+            if (!exId) {
+                alert('请选择一个运动项目');
+                return;
+            }
+            
+            const ex = exercises.find(e => e.id === exId);
+            if (!ex) return;
+            
+            const newExercise = {
+                name: ex.name,
+                icon: ex.icon,
+                sets: sets,
+                reps: reps,
+                unit: ex.unit,
+                completedSets: 0,
+                accumulatedTime: 0,
+                currentSetTime: 0
+            };
+            
+            workoutState.exercises.push(newExercise);
+            renderWorkoutList();
+            closeAddExerciseModal();
+        }
+
+        function updateBMRDisplay() {
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseInt(document.getElementById('profile-age').value) || 0;
+            const height = parseInt(document.getElementById('profile-height').value) || 0;
+            const weight = parseInt(document.getElementById('profile-weight').value) || 0;
+            
+            if (age > 0 && height > 0 && weight > 0) {
+                const bmr = calculateBMR(gender, weight, height, age);
+                document.getElementById('bmr-value').textContent = `${bmr} kcal/天`;
+                document.getElementById('bmr-display').style.display = 'block';
+            } else {
+                document.getElementById('bmr-display').style.display = 'none';
+            }
+        }
+
+        function saveProfile() {
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const age = parseInt(document.getElementById('profile-age').value);
+            const height = parseInt(document.getElementById('profile-height').value);
+            const weight = parseInt(document.getElementById('profile-weight').value);
+            
+            if (!age || !height || !weight) {
+                alert('请填写完整的个人资料');
+                return;
+            }
+            
+            if (age < 1 || age > 120) {
+                alert('请输入有效的年龄（1-120岁）');
+                return;
+            }
+            
+            if (height < 50 || height > 250) {
+                alert('请输入有效的身高（50-250cm）');
+                return;
+            }
+            
+            if (weight < 20 || weight > 200) {
+                alert('请输入有效的体重（20-200kg）');
+                return;
+            }
+            
+            userProfile = { gender, age, height, weight, soundEnabled: userProfile.soundEnabled, theme: userProfile.theme };
+            try {
+                localStorage.setItem('userProfile', JSON.stringify(userProfile));
+            } catch (e) {
+                console.warn('保存用户资料失败:', e);
+                alert('⚠️ 保存失败，可能是存储空间不足');
+                return;
+            }
+            
+            alert('✅ 资料保存成功！');
+            closeProfileModal();
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.tab-item[onclick="switchTab('${tab}')"]`).classList.add('active');
+            
+            document.getElementById('tab-custom').style.display = tab === 'custom' ? 'block' : 'none';
+            document.getElementById('tab-template').style.display = tab === 'template' ? 'block' : 'none';
+        }
+
+        function renderExerciseList() {
+            const container = document.getElementById('exercise-list');
+            
+            const groupedExercises = {
+                kettlebell: exercises.filter(e => e.group === 'kettlebell'),
+                hotel: exercises.filter(e => e.group === 'hotel'),
+                bodyweight: exercises.filter(e => e.group === 'bodyweight'),
+                custom: exercises.filter(e => e.group === 'custom'),
+                badminton: exercises.filter(e => e.group === 'badminton')
+            };
+
+            let html = '';
+            
+            exerciseGroups.forEach(group => {
+                const groupExercises = groupedExercises[group.id];
+                if (!groupExercises || groupExercises.length === 0) return;
+                
+                html += `
+                    <div class="exercise-group">
+                        <div class="exercise-group-header" onclick="toggleGroup('${group.id}')">
+                            <div class="exercise-group-title">
+                                <span class="exercise-group-icon">${group.icon}</span>
+                                <span>${group.name}</span>
+                            </div>
+                            <span class="exercise-group-arrow" id="arrow-${group.id}">›</span>
+                        </div>
+                        <div class="exercise-group-content" id="content-${group.id}">
+                            ${groupExercises.map(exercise => `
+                                <div class="exercise-item">
+                                    <div class="checkbox-wrapper">
+                                        <input type="checkbox" class="checkbox" id="check-${exercise.id}" 
+                                            onchange="toggleExercise(${exercise.id})">
+                                    </div>
+                                    <div class="exercise-info">
+                                        <div class="exercise-header">
+                                            <span class="exercise-icon">${exercise.icon}</span>
+                                            <span class="exercise-name">${exercise.name}</span>
+                                        </div>
+                                        ${exercise.isCustom ? `
+                                            <input type="text" class="custom-input" id="custom-name-${exercise.id}" 
+                                                placeholder="请输入项目名称" style="display: none;">
+                                        ` : ''}
+                                        <div class="sets-input" id="sets-input-${exercise.id}" style="display: none;">
+                                            <div class="input-group">
+                                                <label>组数</label>
+                                                <input type="number" class="input-field num-3" id="sets-${exercise.id}" 
+                                                    value="${exercise.defaultSets}" min="1" max="20">
+                                            </div>
+                                            <span>×</span>
+                                            <div class="input-group">
+                                                <label>每组</label>
+                                                <input type="number" class="input-field num-3" id="reps-${exercise.id}" 
+                                                    value="${exercise.defaultReps}" min="1" max="999" ${exercise.type === 'video' ? 'disabled' : ''}>
+                                                <span class="unit-text">${exercise.type === 'video' ? '分' : (exercise.unit === 'seconds' ? '秒' : exercise.unit === 'minutes' ? '分' : '次')}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function toggleGroup(groupId) {
+            const content = document.getElementById(`content-${groupId}`);
+            const arrow = document.getElementById(`arrow-${groupId}`);
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                arrow.classList.remove('rotated');
+            } else {
+                content.classList.add('expanded');
+                arrow.classList.add('rotated');
+            }
+        }
+
+        function toggleExercise(id) {
+            const checkbox = document.getElementById(`check-${id}`);
+            const setsInput = document.getElementById(`sets-input-${id}`);
+            const customName = document.getElementById(`custom-name-${id}`);
+            
+            if (checkbox.checked) {
+                setsInput.style.display = 'flex';
+                if (customName) customName.style.display = 'block';
+            } else {
+                setsInput.style.display = 'none';
+                if (customName) customName.style.display = 'none';
+            }
+        }
+
+        function startWorkout() {
+            selectedExercises = [];
+            
+            exercises.forEach(exercise => {
+                const checkbox = document.getElementById(`check-${exercise.id}`);
+                if (checkbox && checkbox.checked) {
+                    const sets = parseInt(document.getElementById(`sets-${exercise.id}`).value) || 3;
+                    const reps = parseInt(document.getElementById(`reps-${exercise.id}`).value) || 15;
+                    
+                    let name = exercise.name;
+                    if (exercise.isCustom) {
+                        const customName = document.getElementById(`custom-name-${exercise.id}`).value.trim();
+                        name = customName || '自定义项目';
+                    }
+                    
+                    selectedExercises.push({
+                        name,
+                        icon: exercise.icon,
+                        sets,
+                        reps,
+                        unit: exercise.unit,
+                        type: exercise.type || 'normal',
+                        videoUrl: exercise.videoUrl || '',
+                        completedSets: 0
+                    });
+                }
+            });
+
+            if (selectedExercises.length === 0) {
+                alert('请至少选择一个运动项目');
+                return;
+            }
+
+            startWorkoutSession(selectedExercises);
+        }
+
+        function selectTemplate(templateId) {
+            const template = templates[templateId];
+            selectedExercises = template.map(ex => ({
+                ...ex,
+                completedSets: 0
+            }));
+            startWorkoutSession(selectedExercises);
+        }
+
+        function previewTemplate(templateId) {
+            const template = templates[templateId];
+            
+            switchTab('custom');
+            
+            renderExerciseList();
+            
+            template.forEach(ex => {
+                const exercise = exercises.find(e => e.name === ex.name);
+                if (exercise) {
+                    const checkbox = document.getElementById(`check-${exercise.id}`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        const setsInput = document.getElementById(`sets-input-${exercise.id}`);
+                        if (setsInput) setsInput.style.display = 'flex';
+                        
+                        const setsField = document.getElementById(`sets-${exercise.id}`);
+                        if (setsField) setsField.value = ex.sets;
+                        
+                        const repsField = document.getElementById(`reps-${exercise.id}`);
+                        if (repsField) repsField.value = ex.reps;
+                    }
+                }
+            });
+        }
+
+        let currentEditingTemplate = null;
+
+        function openCustomModal(templateId) {
+            currentEditingTemplate = templateId;
+            const template = templates[templateId];
+            
+            document.getElementById('modal-title').textContent = `✏️ 自定义 ${templateId} 方案`;
+            
+            const container = document.getElementById('custom-exercise-list');
+            container.innerHTML = template.map((ex, index) => {
+                const unitLabel = ex.unit === 'seconds' ? '秒' : ex.unit === 'minutes' ? '分钟' : '次';
+                return `
+                    <div class="custom-exercise-item">
+                        <span class="custom-exercise-icon">${ex.icon}</span>
+                        <span class="custom-exercise-name">${ex.name}</span>
+                        <div class="custom-sets-input">
+                            <input type="number" class="custom-input-field" id="custom-sets-${templateId}-${index}" 
+                                value="${ex.sets}" min="1" max="20">
+                            <span>×</span>
+                            <input type="number" class="custom-input-field" id="custom-reps-${templateId}-${index}" 
+                                value="${ex.reps}" min="1" max="999">
+                            <span style="font-size: 12px; color: var(--text-secondary);">${unitLabel}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('custom-modal').style.display = 'flex';
+        }
+
+        function closeCustomModal() {
+            document.getElementById('custom-modal').style.display = 'none';
+            currentEditingTemplate = null;
+        }
+
+        function startCustomWorkout() {
+            if (!currentEditingTemplate) return;
+            
+            const template = templates[currentEditingTemplate];
+            selectedExercises = template.map((ex, index) => {
+                const sets = parseInt(document.getElementById(`custom-sets-${currentEditingTemplate}-${index}`).value) || 3;
+                const reps = parseInt(document.getElementById(`custom-reps-${currentEditingTemplate}-${index}`).value) || 15;
+                
+                return {
+                    ...ex,
+                    sets,
+                    reps,
+                    completedSets: 0
+                };
+            });
+            
+            closeCustomModal();
+            startWorkoutSession(selectedExercises);
+        }
+
+        function startWorkoutSession(exercises) {
+            const exercisesWithTime = JSON.parse(JSON.stringify(exercises)).map(ex => ({
+                ...ex,
+                accumulatedTime: 0,
+                currentSetTime: 0
+            }));
+            
+            workoutState = {
+                exercises: exercisesWithTime,
+                isPaused: false,
+                totalStartTime: Date.now(),
+                totalElapsed: 0,
+                currentStartTime: Date.now(),
+                currentElapsed: 0,
+                restStartTime: null,
+                restElapsed: 0,
+                accumulatedRest: 0,
+                timerInterval: null,
+                restCountdownInterval: null,
+                lastExerciseIndex: null,
+                videoActive: false,
+                videoIndex: null,
+                videoDurationMs: 0,
+                videoRemainingMs: 0,
+                videoSetHandled: false
+            };
+
+            renderWorkoutList();
+            showPage('workout');
+            startTimer();
+            initLongPress();
+        }
+
+        function startTimer() {
+            if (workoutState.timerInterval) clearInterval(workoutState.timerInterval);
+            
+            workoutState.timerInterval = setInterval(() => {
+                const now = Date.now();
+                
+                workoutState.totalElapsed = now - workoutState.totalStartTime;
+                workoutState.currentElapsed = now - workoutState.currentStartTime;
+                
+                if (workoutState.lastExerciseIndex !== null) {
+                    const lastEx = workoutState.exercises[workoutState.lastExerciseIndex];
+                    lastEx.currentSetTime = workoutState.currentElapsed;
+                }
+                
+                if (workoutState.isPaused) {
+                    workoutState.restElapsed = now - workoutState.restStartTime;
+                }
+                updateTimerDisplay();
+
+                if (workoutState.videoActive && !workoutState.isPaused) {
+                    workoutState.videoRemainingMs -= 100;
+                    const vEx = workoutState.exercises[workoutState.videoIndex];
+                    const vInfo = document.getElementById('video-set-info');
+                    if (vInfo && vEx) vInfo.textContent = `第 ${vEx.completedSets + 1}/${vEx.sets} 组 · 剩余 ${formatTimeShort(Math.max(0, workoutState.videoRemainingMs))}`;
+                    if (workoutState.videoRemainingMs <= 0 && !workoutState.videoSetHandled) {
+                        workoutState.videoSetHandled = true;
+                        videoSetFinished();
+                    }
+                }
+            }, 100);
+        }
+
+        function updateTimerDisplay() {
+            document.getElementById('total-timer').textContent = formatTime(workoutState.totalElapsed);
+            document.getElementById('current-timer').textContent = formatTimeShort(workoutState.isPaused ? workoutState.restElapsed : workoutState.currentElapsed);
+            
+            const restRow = document.getElementById('rest-timer-row');
+            const restTimer = document.getElementById('rest-timer');
+            
+            restRow.style.display = 'flex';
+            const totalRest = workoutState.accumulatedRest + workoutState.restElapsed;
+            restTimer.textContent = formatTimeShort(totalRest);
+        }
+
+        function formatTime(ms) {
+            const hours = Math.floor(ms / 3600000);
+            const minutes = Math.floor((ms % 3600000) / 60000);
+            const seconds = Math.floor((ms % 60000) / 1000);
+            return `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}`;
+        }
+
+        function formatTimeShort(ms) {
+            const minutes = Math.floor(ms / 60000);
+            const seconds = Math.floor((ms % 60000) / 1000);
+            return `${padZero(minutes)}:${padZero(seconds)}`;
+        }
+
+        function padZero(num) {
+            return num.toString().padStart(2, '0');
+        }
+
+        function renderWorkoutList() {
+            const container = document.getElementById('workout-list');
+            container.innerHTML = workoutState.exercises.map((ex, index) => {
+                const progress = ex.completedSets / ex.sets * 100;
+                const isCompleted = ex.completedSets >= ex.sets;
+                const unitLabel = ex.unit === 'seconds' ? '秒' : ex.unit === 'minutes' ? '分钟' : '次';
+                
+                return `
+                    <div class="workout-item">
+                        <div class="workout-item-header">
+                            <span class="workout-item-icon">${ex.icon}</span>
+                            <span class="workout-item-name">${ex.name}</span>
+                            <span class="progress-count">${ex.completedSets}/${ex.sets}组</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span class="progress-text">每组 ${ex.reps} ${unitLabel}</span>
+                            ${isCompleted ? `<span style="color: var(--accent-green); font-weight: 600;">✓ 已完成 · ${formatTimeShort(ex.accumulatedTime || 0)}</span>` : ''}
+                        </div>
+                        ${ex.type === 'video' ? `
+                            <button class="btn-video-play ${isCompleted ? 'disabled' : ''}" 
+                                onclick="playVideoSet(${index})" ${isCompleted ? 'disabled' : ''}>
+                                ${isCompleted ? '✓ 已完成' : '▶️ 播放视频跟练'}
+                            </button>
+                        ` : `
+                            <button class="btn-complete-set ${isCompleted ? 'disabled' : ''}" 
+                                onclick="completeSet(${index})" ${isCompleted ? 'disabled' : ''}>
+                                ✓ 完成一组
+                            </button>
+                        `}
+                        ${isCompleted ? `
+                            <button class="btn-complete-set" style="margin-top: 8px; background: rgba(88, 166, 255, 0.15); border-color: var(--accent-blue); color: var(--accent-blue);" 
+                                onclick="addSet(${index})">
+                                ➕ 加一组
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function addSet(index) {
+            const ex = workoutState.exercises[index];
+            ex.sets++;
+            renderWorkoutList();
+        }
+
+        function completeSet(index) {
+            if (workoutState.isPaused) {
+                alert('请先继续运动');
+                return;
+            }
+
+            const ex = workoutState.exercises[index];
+            if (ex.completedSets < ex.sets) {
+                ex.completedSets++;
+                
+                if (workoutState.lastExerciseIndex !== null && workoutState.lastExerciseIndex !== index) {
+                    const lastEx = workoutState.exercises[workoutState.lastExerciseIndex];
+                    lastEx.accumulatedTime += (lastEx.currentSetTime || workoutState.currentElapsed);
+                } else if (workoutState.lastExerciseIndex === index) {
+                    ex.accumulatedTime += (ex.currentSetTime || workoutState.currentElapsed);
+                }
+                
+                workoutState.lastExerciseIndex = index;
+                workoutState.currentStartTime = Date.now();
+                workoutState.currentElapsed = 0;
+                ex.currentSetTime = 0;
+                renderWorkoutList();
+                
+                if (navigator.vibrate) {
+                    navigator.vibrate(30);
+                }
+                
+                const isExerciseCompleted = ex.completedSets >= ex.sets;
+                if (isExerciseCompleted) {
+                    if (navigator.vibrate) {
+                        navigator.vibrate([100, 100, 100]);
+                    }
+                    playSound('complete');
+                    speak(`恭喜，${ex.name}完成`);
+                } else {
+                    playSound('complete');
+                    speak(`第${ex.completedSets}组完成，还剩${ex.sets - ex.completedSets}组`);
+                }
+            }
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-CN';
+                utterance.rate = 1.0;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function playVideoSet(index) {
+            const ex = workoutState.exercises[index];
+            if (!ex || ex.type !== 'video') return;
+            if (ex.completedSets >= ex.sets) return;
+            if (workoutState.isPaused) {
+                alert('请先继续运动');
+                return;
+            }
+
+            workoutState.videoActive = true;
+            workoutState.videoIndex = index;
+            workoutState.videoDurationMs = (ex.reps || 1) * 60000;
+            workoutState.videoRemainingMs = workoutState.videoDurationMs;
+            workoutState.videoSetHandled = false;
+
+            workoutState.lastExerciseIndex = index;
+            workoutState.currentStartTime = Date.now();
+            workoutState.currentElapsed = 0;
+            ex.currentSetTime = 0;
+
+            const panel = document.getElementById('video-panel');
+            panel.style.display = 'flex';
+            document.getElementById('video-panel-title').textContent = '🏸 ' + ex.name;
+            const video = document.getElementById('video-player');
+            video.src = ex.videoUrl;
+            video.play().catch(function() {});
+
+            speak('开始' + ex.name + '，第' + (ex.completedSets + 1) + '组');
+        }
+
+        function videoSetFinished() {
+            if (!workoutState.videoActive) return;
+            const index = workoutState.videoIndex;
+            const ex = workoutState.exercises[index];
+            if (!ex) { closeVideoPanel(); return; }
+
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(function() {});
+            }
+
+            completeSet(index);
+
+            if (ex.completedSets < ex.sets) {
+                workoutState.videoRemainingMs = workoutState.videoDurationMs;
+                workoutState.videoSetHandled = false;
+                const video = document.getElementById('video-player');
+                video.currentTime = 0;
+                video.play().catch(function() {});
+                const info = document.getElementById('video-set-info');
+                if (info) info.textContent = '第 ' + (ex.completedSets + 1) + '/' + ex.sets + ' 组';
+            } else {
+                closeVideoPanel();
+            }
+        }
+
+        function closeVideoPanel() {
+            workoutState.videoActive = false;
+            workoutState.videoIndex = null;
+            workoutState.videoSetHandled = false;
+            const panel = document.getElementById('video-panel');
+            if (panel) panel.style.display = 'none';
+            const video = document.getElementById('video-player');
+            if (video) {
+                video.pause();
+                video.src = '';
+            }
+        }
+
+        function toggleVideoFullscreen() {
+            const video = document.getElementById('video-player');
+            if (!document.fullscreenElement) {
+                if (video.requestFullscreen) video.requestFullscreen();
+                else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+        function togglePause() {
+            const btn = document.getElementById('btn-pause');
+            const badge = document.getElementById('status-badge');
+            
+            if (workoutState.isPaused) {
+                workoutState.accumulatedRest += workoutState.restElapsed;
+                workoutState.isPaused = false;
+                workoutState.restStartTime = null;
+                workoutState.restElapsed = 0;
+                btn.textContent = '⏸️ 休息暂停';
+                badge.className = 'status-badge status-workout';
+                badge.textContent = '🏃 运动中';
+                
+                if (workoutState.restCountdownInterval) {
+                    clearInterval(workoutState.restCountdownInterval);
+                    workoutState.restCountdownInterval = null;
+                }
+                
+                playSound('restEnd');
+                speak('继续运动');
+            } else {
+                workoutState.isPaused = true;
+                workoutState.restStartTime = Date.now();
+                workoutState.restElapsed = 0;
+                btn.textContent = '▶️ 继续运动';
+                badge.className = 'status-badge status-rest';
+                badge.textContent = '☕ 休息中';
+                
+                playSound('rest');
+                speak('休息60秒');
+                startRestCountdown();
+            }
+        }
+
+        function startRestCountdown() {
+            const restDuration = 60;
+            let remaining = restDuration;
+            
+            workoutState.restCountdownInterval = setInterval(() => {
+                remaining--;
+                
+                if (remaining <= 3 && remaining > 0) {
+                    playSound('tick');
+                }
+                
+                if (remaining <= 0) {
+                    clearInterval(workoutState.restCountdownInterval);
+                    workoutState.restCountdownInterval = null;
+                    
+                    if (navigator.vibrate) {
+                        navigator.vibrate([200, 100, 200]);
+                    }
+                    playSound('restEnd');
+                    speak('该继续了');
+                    
+                    if (workoutState.isPaused) {
+                        document.getElementById('btn-pause').textContent = '⏰ 休息结束';
+                    }
+                }
+            }, 1000);
+        }
+
+        function initLongPress() {
+            const longPressButtons = document.querySelectorAll('.long-press-btn');
+            longPressButtons.forEach(btn => {
+                let pressTimer = null;
+                let startTime = 0;
+                let progressInterval = null;
+                
+                const startPress = (e) => {
+                    e.preventDefault();
+                    startTime = Date.now();
+                    btn.classList.add('pressing');
+                    
+                    progressInterval = setInterval(() => {
+                        const elapsed = Date.now() - startTime;
+                        const progress = Math.min((elapsed / 3000) * 100, 100);
+                        const countdown = Math.ceil((3000 - elapsed) / 1000);
+                        
+                        let progressBar = btn.querySelector('.progress-overlay');
+                        let countdownText = btn.querySelector('.countdown-text');
+                        
+                        if (!progressBar) {
+                            progressBar = document.createElement('div');
+                            progressBar.className = 'progress-overlay';
+                            btn.appendChild(progressBar);
+                        }
+                        if (!countdownText) {
+                            countdownText = document.createElement('span');
+                            countdownText.className = 'countdown-text';
+                            btn.appendChild(countdownText);
+                        }
+                        
+                        progressBar.style.width = `${progress}%`;
+                        countdownText.textContent = countdown > 0 ? countdown : '';
+                        
+                        if (elapsed >= 3000) {
+                            clearInterval(progressInterval);
+                            executeAction(btn.dataset.action);
+                            resetButton(btn);
+                        }
+                    }, 50);
+                };
+                
+                const cancelPress = () => {
+                    clearInterval(progressInterval);
+                    resetButton(btn);
+                };
+                
+                const resetButton = (btn) => {
+                    btn.classList.remove('pressing');
+                    const progressBar = btn.querySelector('.progress-overlay');
+                    const countdownText = btn.querySelector('.countdown-text');
+                    if (progressBar) progressBar.style.width = '0%';
+                    if (countdownText) countdownText.textContent = '';
+                };
+                
+                btn.addEventListener('mousedown', startPress);
+                btn.addEventListener('touchstart', startPress);
+                btn.addEventListener('mouseup', cancelPress);
+                btn.addEventListener('mouseleave', cancelPress);
+                btn.addEventListener('touchend', cancelPress);
+                btn.addEventListener('touchcancel', cancelPress);
+            });
+        }
+
+        function executeAction(action) {
+            closeVideoPanel();
+            if (action === 'end') {
+                clearInterval(workoutState.timerInterval);
+                showResult();
+            } else if (action === 'restart') {
+                if (confirm('是否要退出当前运动并返回首页？')) {
+                    clearInterval(workoutState.timerInterval);
+                    showPage('home');
+                }
+            }
+        }
+
+        function showResult() {
+            const finalRestTime = workoutState.accumulatedRest + workoutState.restElapsed;
+            
+            const quotes = [
+                { emoji: '🦾', text: '今天的你，比昨天多举了一根筷子！' },
+                { emoji: '🐼', text: '运动完的快乐，仅次于躺着不运动' },
+                { emoji: '🍗', text: '恭喜！今晚可以心安理得多吃一块鸡腿' },
+                { emoji: '💪', text: '引体向上可能还在路上，但你在路上了' },
+                { emoji: '🏸', text: '这一练，下次杀球至少重了 0.5 牛顿' },
+                { emoji: '😤', text: '脂肪：今天又是被压迫的一天' },
+                { emoji: '🫠', text: '练完了？快照镜子——有没有发现…还是那样' },
+                { emoji: '🔥', text: '这一波消耗 ≈ 半个肉夹馍，不亏！' },
+                { emoji: '🧘', text: '身体：你礼貌吗？精神：今天很棒！' },
+                { emoji: '🤸', text: '别人问你怎么瘦的？就说"一天天熬的"' },
+            ];
+            const q = quotes[Math.floor(Math.random() * quotes.length)];
+            document.querySelector('.result-title').innerHTML = q.emoji + ' ' + q.text;
+            
+            document.getElementById('result-duration').textContent = 
+                `总用时：${formatTime(workoutState.totalElapsed)}`;
+            
+            const totalSets = workoutState.exercises.reduce((sum, ex) => sum + ex.completedSets, 0);
+            const completedExercises = workoutState.exercises.filter(ex => ex.completedSets > 0).length;
+            
+            let totalCalories = 0;
+            workoutState.exercises.forEach(ex => {
+                totalCalories += calculateCalories(ex.name, ex.completedSets, ex.reps, ex.unit, ex.type);
+            });
+            
+            document.getElementById('stat-exercises').textContent = completedExercises;
+            document.getElementById('stat-sets').textContent = totalSets;
+            document.getElementById('stat-calories').textContent = totalCalories;
+            document.getElementById('stat-rest').textContent = formatTimeShort(finalRestTime);
+            
+            const intensity = getIntensityLabel(totalCalories);
+            const intensityValue = document.getElementById('stat-intensity-value');
+            const intensityLabel = document.getElementById('stat-intensity-label');
+            intensityValue.textContent = intensity.emoji;
+            intensityValue.style.color = intensity.color;
+            intensityLabel.textContent = intensity.label;
+            
+            const statsContainer = document.getElementById('exercise-stats');
+            statsContainer.innerHTML = workoutState.exercises.map(ex => {
+                const unitLabel = ex.unit === 'seconds' ? '秒' : ex.unit === 'minutes' ? '分钟' : '次';
+                const exCalories = calculateCalories(ex.name, ex.completedSets, ex.reps, ex.unit, ex.type);
+                return `
+                    <div class="exercise-stat-item">
+                        <span class="exercise-stat-name">${ex.icon} ${ex.name}</span>
+                        <span class="exercise-stat-detail">${ex.completedSets}/${ex.sets}组 × ${ex.reps}${unitLabel} · ${exCalories} kcal</span>
+                    </div>
+                `;
+            }).join('');
+            
+            showPage('result');
+        }
+
+        function saveRecord() {
+            const finalRestTime = workoutState.accumulatedRest + workoutState.restElapsed;
+            
+            let totalCalories = 0;
+            workoutState.exercises.forEach(ex => {
+                totalCalories += calculateCalories(ex.name, ex.completedSets, ex.reps, ex.unit, ex.type);
+            });
+            
+            const record = {
+                id: Date.now(),
+                date: new Date().toLocaleString('zh-CN'),
+                timestamp: Date.now(),
+                totalDuration: workoutState.totalElapsed,
+                restDuration: finalRestTime,
+                exercises: workoutState.exercises.map(ex => ({
+                    name: ex.name,
+                    icon: ex.icon,
+                    sets: ex.sets,
+                    completedSets: ex.completedSets,
+                    reps: ex.reps,
+                    unit: ex.unit
+                })),
+                totalSets: workoutState.exercises.reduce((sum, ex) => sum + ex.completedSets, 0),
+                calories: totalCalories
+            };
+            
+            const history = getHistory();
+            history.unshift(record);
+            try {
+                localStorage.setItem('workoutHistory', JSON.stringify(history));
+            } catch (e) {
+                alert('⚠️ 存储空间不足，记录保存失败！请清理历史记录后重试。');
+                return;
+            }
+            
+            alert('✅ 记录已保存！');
+            showPage('history');
+        }
+
+        function getHistory() {
+            try {
+                const data = localStorage.getItem('workoutHistory');
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                console.warn('读取历史记录失败，已重置:', e);
+                return [];
+            }
+        }
+
+        function showPage(pageId) {
+            if (pageId !== 'workout') closeVideoPanel();
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(`page-${pageId}`).classList.add('active');
+            
+            if (pageId === 'history') {
+                updateSummary(currentSummaryPeriod);
+                renderHistory();
+            }
+        }
+
+        let summaryChart = null;
+
+        function updateSummary(period) {
+            currentSummaryPeriod = period;
+            document.querySelectorAll('.summary-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.summary-tab[onclick="updateSummary('${period}')"]`).classList.add('active');
+            
+            const history = getHistory();
+            const now = new Date();
+            let startDate;
+            
+            if (period === 'all') {
+                startDate = new Date(0);
+            } else if (period === 'week') {
+                startDate = new Date(now);
+                startDate.setDate(now.getDate() - now.getDay() + 1);
+                startDate.setHours(0, 0, 0, 0);
+            } else if (period === 'month') {
+                startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+            } else {
+                startDate = new Date(now.getFullYear(), 0, 1);
+            }
+            
+            const filtered = history.filter(h => h.timestamp >= startDate.getTime());
+            const count = filtered.length;
+            const totalDuration = filtered.reduce((sum, h) => sum + h.totalDuration, 0);
+            const totalCalories = filtered.reduce((sum, h) => sum + h.calories, 0);
+            
+            if (period === 'all') {
+                document.getElementById('summary-count').textContent = `${count}次`;
+                const hours = Math.floor(totalDuration / 3600000);
+                const minutes = Math.floor((totalDuration % 3600000) / 60000);
+                document.getElementById('summary-duration').textContent = `${hours}时${minutes}分`;
+                document.getElementById('summary-calories').textContent = `${totalCalories.toLocaleString()}kcal`;
+                
+                const exerciseCounts = {};
+                history.forEach(record => {
+                    record.exercises.forEach(ex => {
+                        exerciseCounts[ex.name] = (exerciseCounts[ex.name] || 0) + ex.completedSets;
+                    });
+                });
+                const mostDone = Object.entries(exerciseCounts).sort((a, b) => b[1] - a[1])[0];
+                
+                const longestRecord = history.reduce((max, h) => h.totalDuration > max.totalDuration ? h : max, history[0] || { totalDuration: 0, date: '' });
+                const maxCaloriesRecord = history.reduce((max, h) => h.calories > max.calories ? h : max, history[0] || { calories: 0, date: '' });
+                
+                const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+                const lastMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+                const lastMonthEnd = new Date(now.getFullYear(), now.getMonth(), 0);
+                const thisMonthCount = history.filter(h => h.timestamp >= thisMonthStart.getTime()).length;
+                const lastMonthCount = history.filter(h => h.timestamp >= lastMonthStart.getTime() && h.timestamp <= lastMonthEnd.getTime()).length;
+                
+                const summaryContainer = document.getElementById('exercise-sets-summary');
+                summaryContainer.style.display = 'block';
+                summaryContainer.innerHTML = `
+                    <div style="font-size: 14px; font-weight: 600; margin-bottom: 10px; color: var(--text-primary);">📊 全部数据总览</div>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+                        ${mostDone ? `<div class="history-detail-item"><span>🏆 最常练的：${mostDone[0]}</span><span style="color: var(--accent-orange);">${mostDone[1]}次</span></div>` : ''}
+                        ${longestRecord.date ? `<div class="history-detail-item"><span>⏱️ 单次最长：${formatTime(longestRecord.totalDuration)}</span><span style="color: var(--accent-blue);">${longestRecord.date.split(' ')[0]}</span></div>` : ''}
+                        ${maxCaloriesRecord.date ? `<div class="history-detail-item"><span>🔥 单次最燃：${maxCaloriesRecord.calories}kcal</span><span style="color: var(--accent-red);">${maxCaloriesRecord.date.split(' ')[0]}</span></div>` : ''}
+                        <div class="history-detail-item"><span>📈 本月vs上月</span><span style="color: ${thisMonthCount >= lastMonthCount ? 'var(--accent-green)' : 'var(--accent-red)'}; font-weight: 600;">${thisMonthCount > lastMonthCount ? '+' : ''}${thisMonthCount - lastMonthCount}次 / ${lastMonthCount > 0 ? Math.round((thisMonthCount - lastMonthCount) / lastMonthCount * 100) : (thisMonthCount > 0 ? 100 : 0)}%</span></div>
+                    </div>
+                `;
+                
+                renderChart(period, filtered);
+                renderPRCard();
+            } else {
+                document.getElementById('summary-count').textContent = count;
+                document.getElementById('summary-duration').textContent = formatTimeShort(totalDuration);
+                document.getElementById('summary-calories').textContent = totalCalories;
+                
+                const exerciseStats = {};
+                filtered.forEach(record => {
+                    record.exercises.forEach(ex => {
+                        if (!exerciseStats[ex.name]) {
+                            exerciseStats[ex.name] = { count: 0, duration: 0, completedSets: 0 };
+                        }
+                        const totalCount = ex.completedSets * ex.reps;
+                        exerciseStats[ex.name].count += ex.unit === 'seconds' ? ex.completedSets : totalCount;
+                        exerciseStats[ex.name].duration += ex.unit === 'seconds' ? ex.completedSets * ex.reps : 0;
+                        exerciseStats[ex.name].completedSets += ex.completedSets;
+                    });
+                });
+                
+                const summaryContainer = document.getElementById('exercise-sets-summary');
+                if (Object.keys(exerciseStats).length > 0) {
+                    summaryContainer.style.display = 'block';
+                    summaryContainer.innerHTML = `
+                        <div style="font-size: 14px; font-weight: 600; margin-bottom: 10px; color: var(--text-primary);">各项目完成统计</div>
+                        ${Object.entries(exerciseStats).map(([name, stats]) => {
+                            const hasDuration = stats.duration > 0;
+                            const durationStr = hasDuration ? ` · ${Math.round(stats.duration / 60)}分钟` : '';
+                            const countStr = hasDuration ? `${stats.count}组` : `${stats.count}次`;
+                            return `
+                                <div class="history-detail-item">
+                                    <span>${name}</span>
+                                    <span style="color: var(--accent-orange); font-weight: 600;">${countStr}${durationStr}</span>
+                                </div>
+                            `;
+                        }).join('')}
+                    `;
+                } else {
+                    summaryContainer.style.display = 'none';
+                }
+                
+                renderChart(period, filtered);
+                hidePRCard();
+            }
+        }
+
+        function renderChart(period, data) {
+            const ctx = document.getElementById('summary-chart').getContext('2d');
+            
+            if (summaryChart) {
+                summaryChart.destroy();
+            }
+            
+            let labels = [];
+            let durationData = [];
+            let caloriesData = [];
+            
+            if (period === 'week') {
+                const days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+                const now = new Date();
+                for (let i = 0; i < 7; i++) {
+                    const d = new Date(now);
+                    d.setDate(now.getDate() - now.getDay() + 1 + i);
+                    labels.push(days[i]);
+                    
+                    const dayStart = new Date(d);
+                    dayStart.setHours(0, 0, 0, 0);
+                    const dayEnd = new Date(d);
+                    dayEnd.setHours(23, 59, 59, 999);
+                    
+                    const dayRecords = data.filter(r => r.timestamp >= dayStart.getTime() && r.timestamp <= dayEnd.getTime());
+                    durationData.push(Math.round(dayRecords.reduce((sum, r) => sum + r.totalDuration, 0) / 60000));
+                    caloriesData.push(dayRecords.reduce((sum, r) => sum + r.calories, 0));
+                }
+            } else if (period === 'month') {
+                const now = new Date();
+                const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+                for (let i = 1; i <= daysInMonth; i++) {
+                    labels.push(`${i}日`);
+                    
+                    const dayStart = new Date(now.getFullYear(), now.getMonth(), i);
+                    dayStart.setHours(0, 0, 0, 0);
+                    const dayEnd = new Date(now.getFullYear(), now.getMonth(), i);
+                    dayEnd.setHours(23, 59, 59, 999);
+                    
+                    const dayRecords = data.filter(r => r.timestamp >= dayStart.getTime() && r.timestamp <= dayEnd.getTime());
+                    durationData.push(Math.round(dayRecords.reduce((sum, r) => sum + r.totalDuration, 0) / 60000));
+                    caloriesData.push(dayRecords.reduce((sum, r) => sum + r.calories, 0));
+                }
+            } else {
+                const months = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+                const now = new Date();
+                for (let i = 0; i < 12; i++) {
+                    labels.push(months[i]);
+                    
+                    const monthStart = new Date(now.getFullYear(), i, 1);
+                    const monthEnd = new Date(now.getFullYear(), i + 1, 0);
+                    monthEnd.setHours(23, 59, 59, 999);
+                    
+                    const monthRecords = data.filter(r => r.timestamp >= monthStart.getTime() && r.timestamp <= monthEnd.getTime());
+                    durationData.push(Math.round(monthRecords.reduce((sum, r) => sum + r.totalDuration, 0) / 60000));
+                    caloriesData.push(monthRecords.reduce((sum, r) => sum + r.calories, 0));
+                }
+            }
+            
+            summaryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '运动时长(分钟)',
+                            data: durationData,
+                            backgroundColor: 'rgba(240, 136, 62, 0.7)',
+                            borderColor: 'rgba(240, 136, 62, 1)',
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '卡路里(kcal)',
+                            data: caloriesData,
+                            backgroundColor: 'rgba(63, 185, 80, 0.7)',
+                            borderColor: 'rgba(63, 185, 80, 1)',
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#e6edf3',
+                                font: { size: 12 },
+                                usePointStyle: true,
+                                padding: 16
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#21262d',
+                            titleColor: '#e6edf3',
+                            bodyColor: '#8b949e',
+                            borderColor: '#30363d',
+                            borderWidth: 1,
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.dataset.label || '';
+                                    const value = context.parsed.y || 0;
+                                    return `${label}: ${value}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: '#30363d',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#8b949e',
+                                font: { size: 11 }
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            grid: {
+                                color: '#30363d',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#f0883e',
+                                font: { size: 11 }
+                            },
+                            title: {
+                                display: true,
+                                text: '时长(分钟)',
+                                color: '#f0883e',
+                                font: { size: 11 }
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                color: '#3fb950',
+                                font: { size: 11 }
+                            },
+                            title: {
+                                display: true,
+                                text: '卡路里',
+                                color: '#3fb950',
+                                font: { size: 11 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('history-list');
+            const history = getHistory();
+            
+            if (history.length === 0) {
+                const emptyStates = [
+                    { icon: '🛋️', text: '沙发还没坐热，运动还没开始', sub: '点击首页「开始运动」吧～' },
+                    { icon: '🍩', text: '这里空空如也，像你的运动量', sub: '不是的！只是还没记录而已 😂' },
+                    { icon: '🐣', text: '从零开始，恰好是完美的起点', sub: '今天练一组就算赢' },
+                ];
+                const empty = emptyStates[Math.floor(Math.random() * emptyStates.length)];
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">${empty.icon}</div>
+                        <p>${empty.text}</p>
+                        <p style="font-size: 12px; margin-top: 8px;">${empty.sub}</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = history.map((record, index) => `
+                <div class="history-item">
+                    <div class="history-item-header">
+                        <div class="history-date" onclick="toggleHistoryDetail(${index})">${record.date}</div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div class="history-duration" onclick="toggleHistoryDetail(${index})">${formatTime(record.totalDuration)}</div>
+                            <button class="btn-delete" onclick="deleteRecord(${index})">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="history-meta" onclick="toggleHistoryDetail(${index})">
+                        <span>${record.exercises.length}个项目</span>
+                        <span>${record.totalSets}组</span>
+                        <span>休息 ${formatTimeShort(record.restDuration)} </span>
+                        <span>消耗 ${record.calories} kcal</span>
+                    </div>
+                    ${(() => { const intensity = getIntensityLabel(record.calories); return `<div class="history-intensity" style="color: ${intensity.color}; font-size: 12px; margin-bottom: 8px; font-weight: 500;">${intensity.emoji} ${intensity.label}</div>`; })()}
+                    <div class="history-expand-icon" id="expand-icon-${index}" onclick="toggleHistoryDetail(${index})">▼</div>
+                    <div class="history-detail" id="history-detail-${index}">
+                        ${record.exercises.map(ex => {
+                            const unitLabel = ex.unit === 'seconds' ? '秒' : ex.unit === 'minutes' ? '分钟' : '次';
+                            return `
+                                <div class="history-detail-item">
+                                    <span>${ex.icon} ${ex.name}</span>
+                                    <span>${ex.completedSets}/${ex.sets}组 × ${ex.reps}${unitLabel}</span>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            renderWeeklyReport();
+        }
+
+        function deleteRecord(index) {
+            if (!confirm('确定要删除这条记录吗？')) return;
+            
+            const history = getHistory();
+            history.splice(index, 1);
+            localStorage.setItem('workoutHistory', JSON.stringify(history));
+            
+            updateSummary(currentSummaryPeriod);
+            renderHistory();
+        }
+
+        function toggleHistoryDetail(index) {
+            const detail = document.getElementById(`history-detail-${index}`);
+            const icon = document.getElementById(`expand-icon-${index}`);
+            
+            if (detail.classList.contains('show')) {
+                detail.classList.remove('show');
+                icon.classList.remove('expanded');
+            } else {
+                detail.classList.add('show');
+                icon.classList.add('expanded');
+            }
+        }
+
+        function renderWeeklyReport() {
+            const history = getHistory();
+            const reportCard = document.getElementById('weekly-report-card');
+            const reportContent = document.getElementById('weekly-report-content');
+            
+            if (history.length === 0) {
+                reportCard.style.display = 'none';
+                return;
+            }
+            
+            const now = new Date();
+            const dayOfWeek = now.getDay();
+            const monday = new Date(now);
+            monday.setDate(now.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+            monday.setHours(0, 0, 0, 0);
+            
+            const lastWeekMonday = new Date(monday);
+            lastWeekMonday.setDate(monday.getDate() - 7);
+            
+            const thisWeekRecords = history.filter(r => r.timestamp >= monday.getTime());
+            const lastWeekRecords = history.filter(r => 
+                r.timestamp >= lastWeekMonday.getTime() && r.timestamp < monday.getTime()
+            );
+            
+            const thisWeekCount = thisWeekRecords.length;
+            const thisWeekCalories = thisWeekRecords.reduce((sum, r) => sum + r.calories, 0);
+            const thisWeekDuration = thisWeekRecords.reduce((sum, r) => sum + r.totalDuration, 0);
+            
+            const lastWeekCount = lastWeekRecords.length;
+            const lastWeekCalories = lastWeekRecords.reduce((sum, r) => sum + r.calories, 0);
+            
+            const exerciseCounts = {};
+            thisWeekRecords.forEach(r => {
+                r.exercises.forEach(ex => {
+                    exerciseCounts[ex.name] = (exerciseCounts[ex.name] || 0) + ex.completedSets;
+                });
+            });
+            
+            let bestExercise = '暂无';
+            let maxSets = 0;
+            for (const [name, sets] of Object.entries(exerciseCounts)) {
+                if (sets > maxSets) {
+                    maxSets = sets;
+                    bestExercise = name;
+                }
+            }
+            
+            const minutes = Math.floor(thisWeekDuration / 60);
+            const hours = Math.floor(minutes / 60);
+            const remainingMinutes = minutes % 60;
+            const durationStr = hours > 0 ? `${hours}h${remainingMinutes}min` : `${remainingMinutes}min`;
+            
+            const burgerCount = (thisWeekCalories / 200).toFixed(1);
+            
+            let countDiff = '';
+            if (lastWeekCount > 0) {
+                const diff = thisWeekCount - lastWeekCount;
+                if (diff > 0) {
+                    countDiff = `（比前一周多${diff}次！）`;
+                } else if (diff < 0) {
+                    countDiff = `（比前一周少${Math.abs(diff)}次）`;
+                } else {
+                    countDiff = '（和上周一样棒！）';
+                }
+            }
+            
+            const report = `━━━━━━━━━━━━━━━
+🏋️ 运动 ${thisWeekCount} 次${countDiff}
+🔥 总消耗 ${thisWeekCalories} kcal ≈ ${burgerCount} 个汉堡
+⏱️ 累计挥汗 ${durationStr}
+🦾 最佳项目：${bestExercise}
+━━━━━━━━━━━━━━━
+本周目标：不输给上周 💪`;
+            
+            reportContent.textContent = report;
+            reportCard.style.display = 'block';
+        }
+
+        function renderPRCard() {
+            const history = getHistory();
+            const prContent = document.getElementById('pr-content');
+            const prCard = document.getElementById('pr-card');
+            
+            if (history.length === 0) {
+                prCard.style.display = 'none';
+                return;
+            }
+            
+            const prRecords = {};
+            
+            history.forEach(record => {
+                record.exercises.forEach(ex => {
+                    const key = ex.name;
+                    if (!prRecords[key] || ex.reps > prRecords[key].reps) {
+                        prRecords[key] = {
+                            name: ex.name,
+                            icon: ex.icon,
+                            reps: ex.reps,
+                            unit: ex.unit,
+                            duration: record.totalDuration,
+                            date: record.date.split(' ')[0]
+                        };
+                    }
+                });
+            });
+            
+            const maxCaloriesRecord = history.reduce((max, h) => h.calories > max.calories ? h : max, history[0]);
+            
+            let html = '<div style="display: grid; grid-template-columns: 1fr; gap: 12px;">';
+            
+            Object.values(prRecords).slice(0, 5).forEach(pr => {
+                const unitLabel = pr.unit === 'seconds' ? '秒' : pr.unit === 'minutes' ? '分钟' : '次';
+                html += `
+                    <div class="history-detail-item" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span>${pr.icon} ${pr.name}</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="color: var(--accent-orange); font-weight: 600;">${pr.reps}${unitLabel}</span>
+                            <span style="font-size: 12px; color: #8b949e;">${formatTimeShort(pr.duration)} · ${pr.date}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `
+                <div style="border-top: 1px solid #30363d; padding-top: 12px; margin-top: 8px;">
+                    <div class="history-detail-item" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span>🔥 单次最大消耗</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="color: var(--accent-red); font-weight: 600;">${maxCaloriesRecord.calories} kcal</span>
+                            <span style="font-size: 12px; color: #8b949e;">${formatTimeShort(maxCaloriesRecord.totalDuration)} · ${maxCaloriesRecord.date.split(' ')[0]}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            
+            prContent.innerHTML = html;
+            prCard.style.display = 'block';
+        }
+
+        function hidePRCard() {
+            document.getElementById('pr-card').style.display = 'none';
+        }
+
+        function exportCSV() {
+            const history = getHistory();
+            if (history.length === 0) {
+                alert('暂无数据可导出');
+                return;
+            }
+            
+            let csv = '日期,总时长(秒),休息时长(秒),消耗(kcal),总组数,项目详情\n';
+            
+            history.forEach(record => {
+                const date = record.date;
+                const totalDuration = Math.round(record.totalDuration / 1000);
+                const restDuration = Math.round(record.restDuration / 1000);
+                const calories = record.calories;
+                const totalSets = record.totalSets;
+                
+                const exercisesDetail = record.exercises.map(ex => 
+                    `${ex.name}: ${ex.completedSets}/${ex.sets}组 × ${ex.reps}${ex.unit === 'seconds' ? '秒' : '次'}`
+                ).join('; ');
+                
+                csv += `"${date}",${totalDuration},${restDuration},${calories},${totalSets},"${exercisesDetail}"\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `workout_history_${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert('✅ 导出成功！');
+        }
+
+        function clearHistory() {
+            if (!confirm('⚠️ 确定要清空所有历史记录吗？此操作不可恢复！')) return;
+            
+            try {
+                localStorage.removeItem('workoutHistory');
+            } catch (e) {
+                console.warn('清空历史记录失败:', e);
+            }
+            updateSummary(currentSummaryPeriod);
+            renderHistory();
+            
+            alert('✅ 历史记录已清空');
+        }
+
+        // ========================================
+        //  反馈功能
+        // ========================================
+        function updateFeedbackCounter() {
+            const input = document.getElementById('feedback-input');
+            const count = document.getElementById('feedback-char-count');
+            if (input && count) {
+                count.textContent = input.value.length;
+                if (input.value.length >= 500) {
+                    count.style.color = 'var(--accent-red)';
+                } else if (input.value.length >= 400) {
+                    count.style.color = 'var(--accent-orange)';
+                } else {
+                    count.style.color = 'var(--text-secondary)';
+                }
+            }
+        }
+
+        function clearFeedback() {
+            const input = document.getElementById('feedback-input');
+            if (input) {
+                input.value = '';
+                updateFeedbackCounter();
+                input.focus();
+            }
+        }
+
+        function copyToClipboard(text, successMsg) {
+            navigator.clipboard.writeText(text).then(() => {
+                showFeedbackToast('📋', successMsg);
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showFeedbackToast('📋', successMsg);
+            });
+        }
+
+        function sendFeedbackEmail() {
+            const input = document.getElementById('feedback-input');
+            const feedback = input ? input.value.trim() : '';
+            const subject = encodeURIComponent('[力量训练APP] 反馈建议');
+            const body = encodeURIComponent(
+                (feedback ? feedback + '\n\n' : '') +
+                '---\n' +
+                '发送时间：' + new Date().toLocaleString() + '\n' +
+                '（如有截图或二维码，请在邮件附件中添加）'
+            );
+            const mailto = 'mailto:liuchch@foxmail.com?subject=' + subject + '&body=' + body;
+            window.open(mailto, '_blank');
+            showFeedbackToast('📧', '正在打开邮件客户端…\n收件人：liuchch@foxmail.com');
+        }
+
+        function submitFeedback() {
+            const input = document.getElementById('feedback-input');
+            const feedback = input ? input.value.trim() : '';
+
+            if (!feedback) {
+                showFeedbackToast('😅', '空的！好歹写点啥啊\n哪怕一个 emoji 也行');
+                return;
+            }
+
+            const FORM_URL = 'https://docs.qq.com/form/page/DRGdRQVhvVmpCZGp3';
+
+            navigator.clipboard.writeText(feedback).then(() => {
+                const messages = [
+                    { emoji: '📋', text: '反馈已复制！\n正在打开收集表，粘贴即可提交～' },
+                    { emoji: '🚀', text: '已装弹！\n跳转收集表中，Ctrl+V 发射！' },
+                    { emoji: '💪', text: '感谢反馈！\n收集表已打开，粘贴你的吐槽吧～' },
+                ];
+                const msg = messages[Math.floor(Math.random() * messages.length)];
+                showFeedbackToast(msg.emoji, msg.text);
+                clearFeedback();
+                setTimeout(() => { window.open(FORM_URL, '_blank'); }, 1200);
+            }).catch(() => {
+                showFeedbackToast('📊', '直接打开收集表填写吧～');
+                setTimeout(() => { window.open(FORM_URL, '_blank'); }, 800);
+            });
+        }
+
+        function showFeedbackToast(emoji, text) {
+            const old = document.querySelector('.feedback-toast');
+            if (old) old.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'feedback-toast';
+            toast.innerHTML =
+                '<span class="feedback-toast-emoji">' + emoji + '</span>' +
+                '<span class="feedback-toast-text">' + text.replace(/\n/g, '<br>') + '</span>';
+            document.body.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 2800);
+        }
+
+        init();
+    </script>
+</body>
+</html>
